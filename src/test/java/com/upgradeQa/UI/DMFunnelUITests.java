@@ -1,6 +1,7 @@
 package com.upgradeQa.UI;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.upgradeQa.UI.DataModel.LoanData;
 import com.upgradeQa.UI.Enums.LoanPurposeEnums;
@@ -10,8 +11,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -24,31 +26,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DMFunnelUITests extends NonDMFunnelLandingPage {
 
-    public static final String PASSWORD = "1myPassWord!@#$";
-
     // Given Test Data Set which can be moved to its own resource.
     String AcceptedLoanAmount = "2000";
     String borrowerIncome = "120000";
     String additionalIncome = "5000";
 
     @BeforeClass
-    public static void setUpAll() {
-        Configuration.browserSize = "1280x800";
+    public static void setUp() {
+        open(NON_DM_FUNNEL_LANDING_PAGE);
+        Configuration.browserSize = "1280x750";
         Configuration.reportsFolder = "test-result/reports";
         ChromeOptions chrome = new ChromeOptions();
         chrome.addArguments("--user-agent=Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25");
     }
 
-    @BeforeTest
-    public void setUp() {
-        open("https://www.credify.tech/funnel/nonDMFunnel");
-
+    @BeforeMethod
+    public void setUpAll() {
         homePage = new NonDmFunnelLandingPage();
         contactInformationPage = new ContactInformationPage();
         incomePage = new IncomePage();
         signUpPage = new MidAppSignUpPage();
         loginPage = new LoginPage();
         loanOfferPage = new ApprovedLoanOffersPage();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        Selenide.closeWebDriver();
     }
 
     @Test

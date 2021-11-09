@@ -72,8 +72,8 @@ public class BRFunnelApiTests {
         HttpEntity<String> req = new HttpEntity<>(request.toString(), headers);
 
         try {
-            // this call is throwing 500 as
-            ResponseEntity<String> responseEntityStr = restTemplate.postForEntity(URL, req, String.class);
+            // this call is throwing 500 but expected 40
+            restTemplate.postForEntity(URL, req, String.class);
         } catch (Exception ex) {
             logger.info(ex.getMessage());
             assertTrue(ex.getMessage().contains("MISSING_LOAN_APPLICATION"));
@@ -91,7 +91,7 @@ public class BRFunnelApiTests {
 
         try {
             // this call is throwing 500 as
-            ResponseEntity<String> responseEntityStr = restTemplate.postForEntity(URL, req, String.class);
+            restTemplate.postForEntity(URL, req, String.class);
         } catch (Exception ex) {
             logger.info(ex.getMessage());
             assertTrue(ex.getMessage().contains("400 Bad Request"));

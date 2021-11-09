@@ -15,6 +15,8 @@ public class NonDMFunnelLandingPage {
     //public static final String PAY_OFF_CREDIT_CARDS = "Pay off Credit Cards";
     public static final String PERSONAL_PAGE_HEADER = "Let's get started with some basic information";
     public static final String INCOME_PAGE_HEADER = "How much money do you make in a year?";
+    public static final String NON_DM_FUNNEL_LANDING_PAGE = "https://www.credify.tech/funnel/nonDMFunnel";
+    public static final String PASSWORD = "1myPassWord!@#$";
 
     NonDmFunnelLandingPage homePage;
     ContactInformationPage contactInformationPage;
